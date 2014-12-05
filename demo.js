@@ -20,7 +20,7 @@ $(document).ready(function() {
             success: function(json, textStatus) {
                 $("#loginForm").hide(500);
                 $("#mainPanel").show(500);
-                $('name').html(json['name']);
+                $('code').html(json['code']);
             },
             error: function(xhr, textStatus, error) {
                 btn.removeAttr("disabled");

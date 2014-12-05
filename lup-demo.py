@@ -30,28 +30,7 @@ class LoginHandler(web.RequestHandler):
         response = yield gen.Task(client.fetch, get_captcha)
         code = parse.hack_captcha(response.body)
 
-        # post login request with id & password & code & cookie
-        login = httpclient.HTTPRequest(
-            url=ecard_url+"/sisms/index.php/login/dologin",
-            method='POST',
-            headers={'Cookie': cookie},
-            body='username=' + ustc_id + '&password=' + password
-                 + '&usertype=1&schoolcode=001&imgcode=' + code
-        )
-        yield gen.Task(client.fetch, login)
-
-        # test if user logged in
-        state_test = httpclient.HTTPRequest(
-            url=ecard_url+"/sisms/index.php/person/information",
-            method='GET',
-            headers={'Cookie': cookie}
-        )
-        response = yield gen.Task(client.fetch, state_test)
-
-        if response.body is not None and len(response.body) > 8000:
-            name = parse.find_name(response.body)
-            self.write({'name': name})
-
+        self.write({'code': code})
         self.finish()
 
 

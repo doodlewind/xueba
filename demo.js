@@ -20,12 +20,11 @@ $(document).ready(function() {
             success: function(json, textStatus) {
                 $("#loginForm").hide(500);
                 $("#mainPanel").show(500);
-                $('name').html(json['name']);
                 $('rate').html(json['rate']);
             },
             error: function(xhr, textStatus, error) {
                 btn.removeAttr("disabled");
-                alert("Sorry, login failed.");
+                alert("Sorry, ID not found.");
             }
         });
     });

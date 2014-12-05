@@ -21,7 +21,6 @@ $(document).ready(function() {
                 $("#loginForm").hide(500);
                 $("#mainPanel").show(500);
                 $('name').html(json['name']);
-                $('cookie').html(json['cookie']);
             },
             error: function(xhr, textStatus, error) {
                 btn.removeAttr("disabled");
